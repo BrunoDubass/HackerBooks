@@ -7,11 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14525C9D1AC2C35A00A365C1 /* BDBLibraryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14525C9C1AC2C35A00A365C1 /* BDBLibraryTableViewController.m */; };
+		14525CA21AC32E0400A365C1 /* BDBLibraryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14525CA01AC32E0400A365C1 /* BDBLibraryTableViewCell.m */; };
+		14525CA31AC32E0400A365C1 /* BDBLibraryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14525CA11AC32E0400A365C1 /* BDBLibraryTableViewCell.xib */; };
 		1492F37C1AC1E7EE00833949 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1492F37B1AC1E7EE00833949 /* main.m */; };
 		1492F37F1AC1E7EE00833949 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1492F37E1AC1E7EE00833949 /* AppDelegate.m */; };
 		1492F3811AC1E7EE00833949 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1492F3801AC1E7EE00833949 /* Images.xcassets */; };
 		1492F3841AC1E7EE00833949 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1492F3821AC1E7EE00833949 /* LaunchScreen.xib */; };
 		1492F3901AC1E7EE00833949 /* HackerBooksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1492F38F1AC1E7EE00833949 /* HackerBooksTests.m */; };
+		1492F39B1AC1E83C00833949 /* BDBBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 1492F39A1AC1E83C00833949 /* BDBBook.m */; };
+		1492F39F1AC1E85A00833949 /* BDBLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1492F39E1AC1E85A00833949 /* BDBLibrary.m */; };
+		14B6224E1AC4328300BEB548 /* BDBBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B6224C1AC4328300BEB548 /* BDBBookViewController.m */; };
+		14B6224F1AC4328300BEB548 /* BDBBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B6224D1AC4328300BEB548 /* BDBBookViewController.xib */; };
+		14B622561AC56CE700BEB548 /* BDBSimplePDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B622541AC56CE700BEB548 /* BDBSimplePDFViewController.m */; };
+		14B622571AC56CE700BEB548 /* BDBSimplePDFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B622551AC56CE700BEB548 /* BDBSimplePDFViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,6 +34,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		14525C9B1AC2C35A00A365C1 /* BDBLibraryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBLibraryTableViewController.h; sourceTree = "<group>"; };
+		14525C9C1AC2C35A00A365C1 /* BDBLibraryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBLibraryTableViewController.m; sourceTree = "<group>"; };
+		14525C9F1AC32E0400A365C1 /* BDBLibraryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBLibraryTableViewCell.h; sourceTree = "<group>"; };
+		14525CA01AC32E0400A365C1 /* BDBLibraryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBLibraryTableViewCell.m; sourceTree = "<group>"; };
+		14525CA11AC32E0400A365C1 /* BDBLibraryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BDBLibraryTableViewCell.xib; sourceTree = "<group>"; };
 		1492F3761AC1E7EE00833949 /* HackerBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackerBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1492F37A1AC1E7EE00833949 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1492F37B1AC1E7EE00833949 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -35,6 +49,16 @@
 		1492F3891AC1E7EE00833949 /* HackerBooksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HackerBooksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1492F38E1AC1E7EE00833949 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1492F38F1AC1E7EE00833949 /* HackerBooksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HackerBooksTests.m; sourceTree = "<group>"; };
+		1492F3991AC1E83C00833949 /* BDBBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBBook.h; sourceTree = "<group>"; };
+		1492F39A1AC1E83C00833949 /* BDBBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBBook.m; sourceTree = "<group>"; };
+		1492F39D1AC1E85A00833949 /* BDBLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBLibrary.h; sourceTree = "<group>"; };
+		1492F39E1AC1E85A00833949 /* BDBLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBLibrary.m; sourceTree = "<group>"; };
+		14B6224B1AC4328300BEB548 /* BDBBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBBookViewController.h; sourceTree = "<group>"; };
+		14B6224C1AC4328300BEB548 /* BDBBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBBookViewController.m; sourceTree = "<group>"; };
+		14B6224D1AC4328300BEB548 /* BDBBookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BDBBookViewController.xib; sourceTree = "<group>"; };
+		14B622531AC56CE700BEB548 /* BDBSimplePDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBSimplePDFViewController.h; sourceTree = "<group>"; };
+		14B622541AC56CE700BEB548 /* BDBSimplePDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBSimplePDFViewController.m; sourceTree = "<group>"; };
+		14B622551AC56CE700BEB548 /* BDBSimplePDFViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BDBSimplePDFViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +79,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14525C9E1AC2C36100A365C1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				14525C9B1AC2C35A00A365C1 /* BDBLibraryTableViewController.h */,
+				14525C9C1AC2C35A00A365C1 /* BDBLibraryTableViewController.m */,
+				14525C9F1AC32E0400A365C1 /* BDBLibraryTableViewCell.h */,
+				14525CA01AC32E0400A365C1 /* BDBLibraryTableViewCell.m */,
+				14525CA11AC32E0400A365C1 /* BDBLibraryTableViewCell.xib */,
+				14B6224B1AC4328300BEB548 /* BDBBookViewController.h */,
+				14B6224C1AC4328300BEB548 /* BDBBookViewController.m */,
+				14B6224D1AC4328300BEB548 /* BDBBookViewController.xib */,
+				14B622531AC56CE700BEB548 /* BDBSimplePDFViewController.h */,
+				14B622541AC56CE700BEB548 /* BDBSimplePDFViewController.m */,
+				14B622551AC56CE700BEB548 /* BDBSimplePDFViewController.xib */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		1492F36D1AC1E7EE00833949 = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +120,8 @@
 			children = (
 				1492F37D1AC1E7EE00833949 /* AppDelegate.h */,
 				1492F37E1AC1E7EE00833949 /* AppDelegate.m */,
+				14525C9E1AC2C36100A365C1 /* Controller */,
+				1492F39C1AC1E84100833949 /* Model */,
 				1492F3801AC1E7EE00833949 /* Images.xcassets */,
 				1492F3821AC1E7EE00833949 /* LaunchScreen.xib */,
 				1492F3791AC1E7EE00833949 /* Supporting Files */,
@@ -109,6 +153,17 @@
 				1492F38E1AC1E7EE00833949 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1492F39C1AC1E84100833949 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1492F3991AC1E83C00833949 /* BDBBook.h */,
+				1492F39A1AC1E83C00833949 /* BDBBook.m */,
+				1492F39D1AC1E85A00833949 /* BDBLibrary.h */,
+				1492F39E1AC1E85A00833949 /* BDBLibrary.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,8 +246,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14B6224F1AC4328300BEB548 /* BDBBookViewController.xib in Resources */,
 				1492F3841AC1E7EE00833949 /* LaunchScreen.xib in Resources */,
 				1492F3811AC1E7EE00833949 /* Images.xcassets in Resources */,
+				14525CA31AC32E0400A365C1 /* BDBLibraryTableViewCell.xib in Resources */,
+				14B622571AC56CE700BEB548 /* BDBSimplePDFViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,8 +268,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1492F39F1AC1E85A00833949 /* BDBLibrary.m in Sources */,
 				1492F37F1AC1E7EE00833949 /* AppDelegate.m in Sources */,
+				14B622561AC56CE700BEB548 /* BDBSimplePDFViewController.m in Sources */,
+				14525CA21AC32E0400A365C1 /* BDBLibraryTableViewCell.m in Sources */,
+				14B6224E1AC4328300BEB548 /* BDBBookViewController.m in Sources */,
 				1492F37C1AC1E7EE00833949 /* main.m in Sources */,
+				1492F39B1AC1E83C00833949 /* BDBBook.m in Sources */,
+				14525C9D1AC2C35A00A365C1 /* BDBLibraryTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +460,7 @@
 				1492F3951AC1E7EE00833949 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1492F3961AC1E7EE00833949 /* Build configuration list for PBXNativeTarget "HackerBooksTests" */ = {
 			isa = XCConfigurationList;
@@ -404,6 +469,7 @@
 				1492F3981AC1E7EE00833949 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
