@@ -9,6 +9,8 @@
 #import "BDBBookViewController.h"
 #import "BDBBook.h"
 #import "BDBSimplePDFViewController.h"
+#import "ReaderDocument.h"
+#import "ReaderViewController.h"
 
 @interface BDBBookViewController ()
 
@@ -38,6 +40,7 @@
     }else{
     self.title = self.book.title;
     }
+    [self.navigationController.navigationBar setHidden:NO];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"PDF" style:UIBarButtonItemStylePlain target:self action:@selector(pdfView:)];
     
     [self syncViewModel];
@@ -112,8 +115,15 @@
 
 -(void)pdfView:(BDBBook*)book{
     
-    BDBSimplePDFViewController *pdfVC = [[BDBSimplePDFViewController alloc]initWithModel:self.book];
-    [self.navigationController pushViewController:pdfVC animated:YES];
+    NSString *filePath = [self.book.bookPDFURL path];
+    
+    ReaderDocument *readerDoc = [[ReaderDocument alloc]initWithFilePath:filePath password:nil];
+    ReaderViewController *readerVC = [[ReaderViewController alloc]initWithReaderDocument:readerDoc];
+    [self.navigationController.navigationBar setHidden:YES];
+    [self.navigationController pushViewController:readerVC animated:YES];
+    
+//    BDBSimplePDFViewController *pdfVC = [[BDBSimplePDFViewController alloc]initWithModel:self.book];
+//    [self.navigationController pushViewController:pdfVC animated:YES];
 }
 
 @end

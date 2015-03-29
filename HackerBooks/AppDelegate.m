@@ -32,9 +32,9 @@
     NSURL *dataDocumentsURL = [documentsURL URLByAppendingPathComponent:@"data.dat"];
     NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
     
-    NSError *error = nil;
-    NSArray *contents;
-    contents = [fm contentsOfDirectoryAtURL:documentsURL includingPropertiesForKeys:nil options:NSDirectoryEnumerationSkipsSubdirectoryDescendants error:&error];
+//    NSError *error = nil;
+//    NSArray *contents;
+//    contents = [fm contentsOfDirectoryAtURL:documentsURL includingPropertiesForKeys:nil options:NSDirectoryEnumerationSkipsSubdirectoryDescendants error:&error];
     
     if (![d objectForKey:@"defaults"]) {
         
