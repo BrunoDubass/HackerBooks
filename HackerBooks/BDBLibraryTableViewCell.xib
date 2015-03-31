@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -13,29 +15,47 @@
                 <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d9J-F7-JBW">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9J-F7-JBW">
                         <rect key="frame" x="97" y="8" width="609" height="41"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qVI-ET-VZb">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVI-ET-VZb">
                         <rect key="frame" x="97" y="57" width="609" height="21"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="W5D-Un-Ic7"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="azO-is-sC0">
-                        <rect key="frame" x="19" y="3" width="61" height="77.5"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="azO-is-sC0">
+                        <rect key="frame" x="19" y="3" width="61" height="78"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="azO-is-sC0" secondAttribute="height" multiplier="61:77" id="FaJ-pk-uV8"/>
+                        </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="1Kx-lq-OFS">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Kx-lq-OFS">
                         <rect key="frame" x="714" y="32" width="21" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                     </imageView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="1Kx-lq-OFS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="24" id="9qS-Rh-llJ"/>
+                    <constraint firstItem="1Kx-lq-OFS" firstAttribute="centerY" secondItem="azO-is-sC0" secondAttribute="centerY" id="DHT-CX-V8Z"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="qVI-ET-VZb" secondAttribute="trailing" constant="21" id="M6Y-mu-kME"/>
+                    <constraint firstAttribute="trailing" secondItem="1Kx-lq-OFS" secondAttribute="trailing" id="OHs-WI-ghG"/>
+                    <constraint firstItem="d9J-F7-JBW" firstAttribute="leading" secondItem="azO-is-sC0" secondAttribute="trailing" constant="17" id="OUK-Ep-D1X"/>
+                    <constraint firstItem="azO-is-sC0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="11" id="Thw-ss-YJU"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="qVI-ET-VZb" secondAttribute="bottom" constant="-0.5" id="ado-qz-wnU"/>
+                    <constraint firstItem="1Kx-lq-OFS" firstAttribute="leading" secondItem="d9J-F7-JBW" secondAttribute="trailing" constant="8" symbolic="YES" id="cZo-0t-Bre"/>
+                    <constraint firstItem="qVI-ET-VZb" firstAttribute="top" secondItem="d9J-F7-JBW" secondAttribute="bottom" constant="8" symbolic="YES" id="e3P-ew-saf"/>
+                    <constraint firstItem="d9J-F7-JBW" firstAttribute="trailing" secondItem="qVI-ET-VZb" secondAttribute="trailing" id="f7v-3c-iuE"/>
+                    <constraint firstItem="d9J-F7-JBW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="jrc-Aa-tS4"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="azO-is-sC0" secondAttribute="bottom" constant="-3" id="jsR-Q1-oPF"/>
+                    <constraint firstItem="d9J-F7-JBW" firstAttribute="leading" secondItem="qVI-ET-VZb" secondAttribute="leading" id="ldR-aU-KHH"/>
+                    <constraint firstItem="azO-is-sC0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-5" id="pYO-Dq-Pe2"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="authorsLabel" destination="qVI-ET-VZb" id="rYm-yc-AFR"/>
@@ -46,9 +66,4 @@
             <point key="canvasLocation" x="433" y="426"/>
         </tableViewCell>
     </objects>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

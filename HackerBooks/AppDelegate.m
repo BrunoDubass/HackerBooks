@@ -51,10 +51,12 @@
     //Recupero JSON de Documents
     dataFromJSON = [NSData dataWithContentsOfURL:dataDocumentsURL];
     
+    self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+    
     //Parseo datos de JSON
     [self dataToModel:dataFromJSON];
     
-    self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+    
     
     
     //DETECTO PANTALLA
