@@ -8,12 +8,22 @@
 
 @import UIKit;
 @class BDBLibrary;
-#import "BDBBookViewController.h"
+@class BDBBook;
 
 
-@interface BDBLibraryTableViewController : UITableViewController//<BDBBookViewControllerDelegate>
+@protocol BDBLibraryTableViewControllerDelegate <NSObject>
+
+@optional
+
+-(void)libraryTableviewSelectedBook:(BDBBook*)book arrayOfBooks:(NSArray*)books;
+
+@end
+
+
+@interface BDBLibraryTableViewController : UITableViewController<BDBLibraryTableViewControllerDelegate>
 
 @property (strong, nonatomic)BDBLibrary *model;
+@property (weak, nonatomic)id<BDBLibraryTableViewControllerDelegate>delegate;
 
 -(id)initWithModel:(NSArray*)model style:(UITableViewStyle)style;
 

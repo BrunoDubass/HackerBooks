@@ -12,6 +12,7 @@
 #import "BDBLibraryTableViewCell.h"
 #import "BDBBookViewController.h"
 
+
 @interface BDBLibraryTableViewController ()
 
 @property (strong, nonatomic)NSMutableArray *booksJSON;
@@ -28,18 +29,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    //Registrar NIB
+    UINib *cellNib = [UINib nibWithNibName:@"BDBLibraryTableViewCell" bundle:nil];
+    [self.tableView registerNib:cellNib
+         forCellReuseIdentifier:[BDBLibraryTableViewCell cellId]];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.tableView reloadData];
+    NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
+    NSIndexPath *iP = [NSIndexPath indexPathForRow:[[[d objectForKey:@"keyBook"] objectForKey:@"row"]integerValue] inSection:[[[d objectForKey:@"keyBook"]objectForKey:@"section"]integerValue]];
     
-    //Registrar NIB
-    UINib *cellNib = [UINib nibWithNibName:@"BDBLibraryTableViewCell" bundle:nil];
-    [self.tableView registerNib:cellNib
-         forCellReuseIdentifier:[BDBLibraryTableViewCell cellId]];
-    
+    //[self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:iP];
+    [self.tableView selectRowAtIndexPath:iP animated:YES scrollPosition:UITableViewScrollPositionTop];
     
     
 }
@@ -79,7 +82,7 @@
     BDBBook *b = [self.model bookForTag:[self.model.tags objectAtIndex:indexPath.section] atIndex:indexPath.row];
     
     
-    BDBLibraryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[BDBLibraryTableViewCell cellId]];
+    BDBLibraryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[BDBLibraryTableViewCell cellId] forIndexPath:indexPath];
 
     
     if (indexPath.section == 0) {
@@ -110,11 +113,21 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    BDBBook *bk = [self.model bookForTag:[self.model.tags objectAtIndex:indexPath.section] atIndex:indexPath.row];
+    NSNumber *section = [NSNumber numberWithInteger:indexPath.section];
+    NSNumber *row = [NSNumber numberWithInteger:indexPath.row];
     
-    BDBBookViewController *bVC = [[BDBBookViewController alloc]initWithModel:bk books:self.model.books];
-    //bVC.delegate = self;
-    [self.navigationController pushViewController:bVC animated:YES];
+    [[NSUserDefaults standardUserDefaults]setObject:@{@"section":section , @"row":row} forKey:@"keyBook"];
+    
+    BDBBook *bk = [self.model bookForTag:[self.model.tags objectAtIndex:indexPath.section] atIndex:indexPath.row];
+    [self.delegate libraryTableviewSelectedBook:bk arrayOfBooks:self.model.books];
+    
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    NSDictionary *dic = @{@"book":bk};
+    NSNotification *n = [[NSNotification alloc]initWithName:@"book" object:self userInfo:dic];
+    [nc postNotification:n];
+    
+    
+
 }
 
 -(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
@@ -126,7 +139,9 @@
     return [BDBLibraryTableViewCell cellHigh];
 }
 
-
+-(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
 
 /*
 // Override to support conditional editing of the table view.
@@ -172,18 +187,13 @@
 }
 */
 
-#pragma mark - BDBBookViewControllerDelegate
+#pragma mark - BDBLibraryTableViewControllerDelegate
 
-//-(void)bookViewDidChangeFavoriteState:(BDBBook *)book{
-//    BDBBook *b;
-//    NSArray *bs = self.model.books;
-//    for (int i = 0; i<bs.count; i++) {
-//        if ([[[bs objectAtIndex:i]title]isEqual:book.title]) {
-//            b = book;
-//        }
-//    }
-//    
-//}
-
+-(void)libraryTableviewSelectedBook:(BDBBook *)book arrayOfBooks:(NSArray *)books{
+    
+        BDBBookViewController *bVC = [[BDBBookViewController alloc]initWithModel:book books:books];
+    
+        [self.navigationController pushViewController:bVC animated:YES];
+}
 
 @end

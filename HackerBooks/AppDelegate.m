@@ -9,10 +9,13 @@
 #import "AppDelegate.h"
 #import "BDBLibraryTableViewController.h"
 #import "BDBBook.h"
+#import "BDBLibrary.h"
+#import "BDBBookViewController.h"
 
 @interface AppDelegate (){
     
     NSURL *documentsURL;
+    NSUserDefaults *d;
 }
 
 @property (strong, nonatomic)NSMutableArray *booksJSON;
@@ -30,11 +33,8 @@
     documentsURL = [[fm URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask]lastObject];
     NSData *dataFromJSON;
     NSURL *dataDocumentsURL = [documentsURL URLByAppendingPathComponent:@"data.dat"];
-    NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
+    d = [NSUserDefaults standardUserDefaults];
     
-//    NSError *error = nil;
-//    NSArray *contents;
-//    contents = [fm contentsOfDirectoryAtURL:documentsURL includingPropertiesForKeys:nil options:NSDirectoryEnumerationSkipsSubdirectoryDescendants error:&error];
     
     if (![d objectForKey:@"defaults"]) {
         
@@ -44,27 +44,40 @@
         
     }
     dataFromJSON = [NSData dataWithContentsOfURL:dataDocumentsURL];
+    
+    
+    
+    
     [self dataToModel:dataFromJSON];
-
-    
-    //Controlador
-    
-    BDBLibraryTableViewController *tVC = [[BDBLibraryTableViewController alloc]initWithModel:self.booksJSON style:UITableViewStylePlain];
-    
-    //Combinador
-    
-    UINavigationController *nC = [[UINavigationController alloc]initWithRootViewController:tVC];
-    
     
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+    
+    
+    //PANTALLA
+    
+    if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        
+        [self configureForPad];
+        
+    }else{
+        
+        [self configureForPhone];
+    }
+    
 
     
-    self.window.rootViewController = nC;
+    
+    
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+
+    
     return YES;
-}
+
+    
+    }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -92,33 +105,33 @@
 
 -(void)dataToModel:(NSData*)data{
     
-    NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
+    d = [NSUserDefaults standardUserDefaults];
     NSError *error = nil;
     NSArray *dataToJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     self.booksJSON = [[NSMutableArray alloc]init];
     
     for (NSDictionary* dic in dataToJSON) {
         
-                if (![d objectForKey:@"defaults"]) {
-                    
-                    
-                    //Descarga de la imagen del libro nombrando el fichero con el título del libro
-                    NSURL *imgURL = [NSURL URLWithString:[dic objectForKey:@"image_url"]];
-                    NSData *dt = [NSData dataWithContentsOfURL:imgURL];
-                    NSURL *imgDocumentsURL = [documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@", [dic objectForKey:@"title"]]];
-                    [dt writeToURL:imgDocumentsURL  atomically:YES];
-                    
-        
-                    //Descarga del PDF nombrando el fichero con el título del libro
-                    NSURL *pdfURL = [NSURL URLWithString:[dic objectForKey:@"pdf_url"]];
-                    NSData *dtPDF = [NSData dataWithContentsOfURL:pdfURL];
-                    NSURL *pdfDocumentsURL = [documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.pdf", [dic objectForKey:@"title"]]];
-                    [dtPDF writeToURL:pdfDocumentsURL atomically:YES];
         
         
+                        if (![d objectForKey:@"defaults"]) {
+                        
+                        //Descarga de la imagen del libro nombrando el fichero con el título del libro
+                        NSURL *imgURL = [NSURL URLWithString:[dic objectForKey:@"image_url"]];
+                        NSData *dt = [NSData dataWithContentsOfURL:imgURL];
+                        NSURL *imgDocumentsURL = [documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@", [dic objectForKey:@"title"]]];
+                        [dt writeToURL:imgDocumentsURL  atomically:YES];
+                        
+                        
+                        //Descarga del PDF nombrando el fichero con el título del libro
+                        NSURL *pdfURL = [NSURL URLWithString:[dic objectForKey:@"pdf_url"]];
+                        NSData *dtPDF = [NSData dataWithContentsOfURL:pdfURL];
+                        NSURL *pdfDocumentsURL = [documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.pdf", [dic objectForKey:@"title"]]];
+                        [dtPDF writeToURL:pdfDocumentsURL atomically:YES];
+                        }
         
         
-                }
+               
         BDBBook *book = [[BDBBook alloc]initWithTitle:[dic objectForKey:@"title"]
                                               authors:[[dic objectForKey:@"authors"]componentsSeparatedByString:@","]
                                                  tags:[[dic objectForKey:@"tags"]componentsSeparatedByString:@","]
@@ -142,9 +155,62 @@
 -(void)setDefaults{
     
     NSArray *indexes = [[NSArray alloc]init];
-    NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
+    d = [NSUserDefaults standardUserDefaults];
     [d setObject:indexes forKey:@"defaults"];
+    [d setObject:@{@"section":@1, @"row":@0} forKey:@"keyBook"];
 }
+
+#pragma mark - PAD AND PHONE
+
+-(void)configureForPad{
+    
+    d = [NSUserDefaults standardUserDefaults];
+    
+    //Controlador
+    
+    BDBLibrary *library = [[BDBLibrary alloc]initWithBooks:self.booksJSON];
+    NSInteger section = [[[d objectForKey:@"keyBook"]objectForKey:@"section"]integerValue];
+    NSInteger row = [[[d objectForKey:@"keyBook"]objectForKey:@"row"]integerValue];
+    
+    BDBLibraryTableViewController *tVC = [[BDBLibraryTableViewController alloc]initWithModel:self.booksJSON style:UITableViewStylePlain];
+    
+    BDBBookViewController *bVC = [[BDBBookViewController alloc]initWithModel:[[library booksForTag:[[library tags]objectAtIndex:section]]objectAtIndex:row] books:self.booksJSON];
+    
+    
+    
+    //Combinador
+    
+    UINavigationController *nC = [[UINavigationController alloc]initWithRootViewController:tVC];//TABLE
+    UINavigationController *vC = [[UINavigationController alloc]initWithRootViewController:bVC];//BOOK
+    
+    UISplitViewController *sVC = [[UISplitViewController alloc]init];
+    sVC.viewControllers = @[nC, vC];
+    
+    bVC.navigationItem.leftBarButtonItem = sVC.displayModeButtonItem;
+    
+    //Delegados
+    
+    sVC.delegate = bVC;
+    tVC.delegate = bVC;
+    
+    
+
+    self.window.rootViewController = sVC;
+    
+}
+
+-(void)configureForPhone{
+    
+    BDBLibraryTableViewController *tVC = [[BDBLibraryTableViewController alloc]initWithModel:self.booksJSON style:UITableViewStylePlain];
+    
+    UINavigationController *nC = [[UINavigationController alloc]initWithRootViewController:tVC];//TABLE
+    
+    tVC.delegate = tVC;
+    
+    self.window.rootViewController = nC;
+
+}
+
 
 
 @end

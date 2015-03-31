@@ -12,6 +12,7 @@
 #import "ReaderDocument.h"
 #import "ReaderViewController.h"
 
+
 @interface BDBBookViewController ()
 
 @end
@@ -83,7 +84,10 @@
     self.bookImg.image = self.book.bookImg;
     if (self.book.isFavorite) {
         [self.buttonFav setBackgroundImage:[UIImage imageNamed:@"Star1"] forState:UIControlStateNormal];
+    }else{
+        [self.buttonFav setBackgroundImage:[UIImage imageNamed:@"Star2"] forState:UIControlStateNormal];
     }
+    
 }
 
 -(IBAction)favorite:(id)sender{
@@ -124,6 +128,24 @@
     
 //    BDBSimplePDFViewController *pdfVC = [[BDBSimplePDFViewController alloc]initWithModel:self.book];
 //    [self.navigationController pushViewController:pdfVC animated:YES];
+}
+#pragma mark - UISplitViewControllerDelegate
+
+-(void)splitViewController:(UISplitViewController *)svc willChangeToDisplayMode:(UISplitViewControllerDisplayMode)displayMode{
+    
+    if (displayMode == UISplitViewControllerDisplayModePrimaryHidden) {
+        self.navigationItem.leftBarButtonItem = svc.displayModeButtonItem;
+    }else{
+        self.navigationItem.leftBarButtonItem = nil;
+    }
+}
+
+#pragma mark - BDBLibraryTableViewControllerDelegate
+
+-(void)libraryTableviewSelectedBook:(BDBBook *)book arrayOfBooks:(NSArray *)books{
+    self.book = book;
+    self.books = books;
+    [self syncViewModel];
 }
 
 @end

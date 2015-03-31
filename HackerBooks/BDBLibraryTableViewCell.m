@@ -10,9 +10,6 @@
 
 @implementation BDBLibraryTableViewCell
 
-- (IBAction)button:(id)sender {
-}
-
 +(NSString*)cellId{
     return NSStringFromClass(self);
 }

@@ -18,8 +18,6 @@
 		1492F39B1AC1E83C00833949 /* BDBBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 1492F39A1AC1E83C00833949 /* BDBBook.m */; };
 		1492F39F1AC1E85A00833949 /* BDBLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1492F39E1AC1E85A00833949 /* BDBLibrary.m */; };
 		14A7211C1AC830BB0095C722 /* ReaderConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A721091AC830BB0095C722 /* ReaderConstants.m */; };
-		14A7211D1AC830BB0095C722 /* ReaderDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A7210B1AC830BB0095C722 /* ReaderDocument.m */; };
-		14A7211E1AC830BB0095C722 /* ReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A7210D1AC830BB0095C722 /* ReaderViewController.m */; };
 		14A7211F1AC830BB0095C722 /* ReaderMainToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A7210F1AC830BB0095C722 /* ReaderMainToolbar.m */; };
 		14A721201AC830BB0095C722 /* ReaderMainPagebar.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A721111AC830BB0095C722 /* ReaderMainPagebar.m */; };
 		14A721211AC830BB0095C722 /* ReaderContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A721131AC830BB0095C722 /* ReaderContentView.m */; };
@@ -41,6 +39,8 @@
 		14B6224F1AC4328300BEB548 /* BDBBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B6224D1AC4328300BEB548 /* BDBBookViewController.xib */; };
 		14B622561AC56CE700BEB548 /* BDBSimplePDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B622541AC56CE700BEB548 /* BDBSimplePDFViewController.m */; };
 		14B622571AC56CE700BEB548 /* BDBSimplePDFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B622551AC56CE700BEB548 /* BDBSimplePDFViewController.xib */; };
+		14C9109D1AC9423500FE6332 /* ReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C9109B1AC9423500FE6332 /* ReaderViewController.m */; };
+		14C9109E1AC9423500FE6332 /* ReaderDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C9109C1AC9423500FE6332 /* ReaderDocument.m */; };
 		14D648781AC84B5D00DCDA25 /* Reader-Button-H.png in Resources */ = {isa = PBXBuildFile; fileRef = 14D648681AC84B5D00DCDA25 /* Reader-Button-H.png */; };
 		14D648791AC84B5D00DCDA25 /* Reader-Button-H@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14D648691AC84B5D00DCDA25 /* Reader-Button-H@2x.png */; };
 		14D6487A1AC84B5D00DCDA25 /* Reader-Button-N.png in Resources */ = {isa = PBXBuildFile; fileRef = 14D6486A1AC84B5D00DCDA25 /* Reader-Button-N.png */; };
@@ -91,10 +91,6 @@
 		1492F39E1AC1E85A00833949 /* BDBLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBLibrary.m; sourceTree = "<group>"; };
 		14A721081AC830BB0095C722 /* ReaderConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderConstants.h; sourceTree = "<group>"; };
 		14A721091AC830BB0095C722 /* ReaderConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderConstants.m; sourceTree = "<group>"; };
-		14A7210A1AC830BB0095C722 /* ReaderDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderDocument.h; sourceTree = "<group>"; };
-		14A7210B1AC830BB0095C722 /* ReaderDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderDocument.m; sourceTree = "<group>"; };
-		14A7210C1AC830BB0095C722 /* ReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderViewController.h; sourceTree = "<group>"; };
-		14A7210D1AC830BB0095C722 /* ReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderViewController.m; sourceTree = "<group>"; };
 		14A7210E1AC830BB0095C722 /* ReaderMainToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderMainToolbar.h; sourceTree = "<group>"; };
 		14A7210F1AC830BB0095C722 /* ReaderMainToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderMainToolbar.m; sourceTree = "<group>"; };
 		14A721101AC830BB0095C722 /* ReaderMainPagebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderMainPagebar.h; sourceTree = "<group>"; };
@@ -135,6 +131,10 @@
 		14B622531AC56CE700BEB548 /* BDBSimplePDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBSimplePDFViewController.h; sourceTree = "<group>"; };
 		14B622541AC56CE700BEB548 /* BDBSimplePDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBSimplePDFViewController.m; sourceTree = "<group>"; };
 		14B622551AC56CE700BEB548 /* BDBSimplePDFViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BDBSimplePDFViewController.xib; sourceTree = "<group>"; };
+		14C910991AC9423500FE6332 /* ReaderDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderDocument.h; sourceTree = "<group>"; };
+		14C9109A1AC9423500FE6332 /* ReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderViewController.h; sourceTree = "<group>"; };
+		14C9109B1AC9423500FE6332 /* ReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderViewController.m; sourceTree = "<group>"; };
+		14C9109C1AC9423500FE6332 /* ReaderDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderDocument.m; sourceTree = "<group>"; };
 		14D648681AC84B5D00DCDA25 /* Reader-Button-H.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Button-H.png"; sourceTree = "<group>"; };
 		14D648691AC84B5D00DCDA25 /* Reader-Button-H@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Button-H@2x.png"; sourceTree = "<group>"; };
 		14D6486A1AC84B5D00DCDA25 /* Reader-Button-N.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Button-N.png"; sourceTree = "<group>"; };
@@ -264,12 +264,12 @@
 		14A721071AC830AE0095C722 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				14C910991AC9423500FE6332 /* ReaderDocument.h */,
+				14C9109C1AC9423500FE6332 /* ReaderDocument.m */,
+				14C9109A1AC9423500FE6332 /* ReaderViewController.h */,
+				14C9109B1AC9423500FE6332 /* ReaderViewController.m */,
 				14A721081AC830BB0095C722 /* ReaderConstants.h */,
 				14A721091AC830BB0095C722 /* ReaderConstants.m */,
-				14A7210A1AC830BB0095C722 /* ReaderDocument.h */,
-				14A7210B1AC830BB0095C722 /* ReaderDocument.m */,
-				14A7210C1AC830BB0095C722 /* ReaderViewController.h */,
-				14A7210D1AC830BB0095C722 /* ReaderViewController.m */,
 				14A7210E1AC830BB0095C722 /* ReaderMainToolbar.h */,
 				14A7210F1AC830BB0095C722 /* ReaderMainToolbar.m */,
 				14A721101AC830BB0095C722 /* ReaderMainPagebar.h */,
@@ -473,7 +473,6 @@
 				1492F39F1AC1E85A00833949 /* BDBLibrary.m in Sources */,
 				14A721241AC830BB0095C722 /* ThumbsViewController.m in Sources */,
 				14A721201AC830BB0095C722 /* ReaderMainPagebar.m in Sources */,
-				14A7211E1AC830BB0095C722 /* ReaderViewController.m in Sources */,
 				14A7213F1AC83B410095C722 /* ReaderThumbQueue.m in Sources */,
 				14A721441AC83B410095C722 /* UIXToolbarView.m in Sources */,
 				14A721431AC83B410095C722 /* ReaderThumbView.m in Sources */,
@@ -483,11 +482,12 @@
 				14B622561AC56CE700BEB548 /* BDBSimplePDFViewController.m in Sources */,
 				14525CA21AC32E0400A365C1 /* BDBLibraryTableViewCell.m in Sources */,
 				14B6224E1AC4328300BEB548 /* BDBBookViewController.m in Sources */,
+				14C9109D1AC9423500FE6332 /* ReaderViewController.m in Sources */,
 				1492F37C1AC1E7EE00833949 /* main.m in Sources */,
+				14C9109E1AC9423500FE6332 /* ReaderDocument.m in Sources */,
 				14A721231AC830BB0095C722 /* ReaderContentTile.m in Sources */,
 				14A721401AC83B410095C722 /* ReaderThumbFetch.m in Sources */,
 				14A721221AC830BB0095C722 /* ReaderContentPage.m in Sources */,
-				14A7211D1AC830BB0095C722 /* ReaderDocument.m in Sources */,
 				14A721211AC830BB0095C722 /* ReaderContentView.m in Sources */,
 				14A721411AC83B410095C722 /* ReaderThumbRender.m in Sources */,
 				1492F39B1AC1E83C00833949 /* BDBBook.m in Sources */,
@@ -610,7 +610,7 @@
 				INFOPLIST_FILE = HackerBooks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -621,7 +621,7 @@
 				INFOPLIST_FILE = HackerBooks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

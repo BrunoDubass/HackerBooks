@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 brunodominguez. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface BDBLibraryTableViewCell : UITableViewCell
 
@@ -14,8 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorsLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *starImage;
-
-
 
 +(NSString*)cellId;
 +(CGFloat)cellHigh;
