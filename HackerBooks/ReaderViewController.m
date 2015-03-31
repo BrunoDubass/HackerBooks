@@ -32,6 +32,7 @@
 #import "ReaderThumbCache.h"
 #import "ReaderThumbQueue.h"
 #import "BDBBook.h"
+#import "BDBLibraryTableViewController.h"
 
 #import <MessageUI/MessageUI.h>
 
@@ -325,6 +326,9 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+    
+    //Delegado de sí mismo para implementar dissmis de botón Done.
+    
     self.delegate = self;
 
 	assert(document != nil); // Must have a valid ReaderDocument
@@ -393,7 +397,9 @@
 {
 	[super viewWillAppear:animated];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateDocument:) name:@"book" object:nil];
+    //Alta en notificación NOTIFICATION_DID_SELECT_ROW
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateDocument:) name:NOTIFICATION_DID_SELECT_ROW object:nil];
     
     
     
@@ -428,6 +434,9 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
+    
+    //Baja en notificación NOTIFICATION_DID_SELECT_ROW
+    
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 
 	lastAppearSize = self.view.bounds.size; // Track view size
@@ -909,43 +918,23 @@
 	if (userInterfaceIdiom == UIUserInterfaceIdiomPad) if (printInteraction != nil) [printInteraction dismissAnimated:NO];
 }
 
+//NOTIFICATION_DID_SELECT_ROW
+
 -(void)updateDocument:(NSNotification*)n{
     
+    //Extracción del userInfo Diccionario
+    
     NSDictionary *dic = [n userInfo];
-    BDBBook *b = [dic objectForKey:@"book"];
+    BDBBook *b = [dic objectForKey:KEY];
     ReaderDocument *r = [[ReaderDocument alloc]initWithFilePath:[b.bookPDFURL path] password:nil];
     ReaderViewController *rVC = [[ReaderViewController alloc]initWithReaderDocument:r];
+    
+    //Ñapa para actualizar Modelo y Vista. popViewController al controlador actual y pushViewController a ReaderViewController
     
     UINavigationController *navController = self.navigationController;
     [navController popViewControllerAnimated:NO];
     [navController pushViewController:rVC animated:NO];
-    
-    
-//    document = r;
-//    userInterfaceIdiom = [UIDevice currentDevice].userInterfaceIdiom; // User interface idiom
-//    
-//    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter]; // Default notification center
-//    
-//    [notificationCenter addObserver:self selector:@selector(applicationWillResign:) name:UIApplicationWillTerminateNotification object:nil];
-//    
-//    [notificationCenter addObserver:self selector:@selector(applicationWillResign:) name:UIApplicationWillResignActiveNotification object:nil];
-//    
-//    scrollViewOutset = ((userInterfaceIdiom == UIUserInterfaceIdiomPad) ? SCROLLVIEW_OUTSET_LARGE : SCROLLVIEW_OUTSET_SMALL);
-    
-    
-    
-//      [r updateDocumentProperties];
-    
-//      [ReaderThumbCache touchThumbCacheWithGUID:r.guid]; // Touch the document thumb cache directory
-    
-//    [r updateDocumentProperties];
-//    document = r; // Retain the supplied ReaderDocument object for our use
-//    
-//    [ReaderThumbCache touchThumbCacheWithGUID:r.guid]; // Touch the document thumb cache directory
-    
-//    [self viewDidLoad];
-//    [self viewWillAppear:NO];
-//    [self viewDidAppear:NO];
+        
 }
 
 #pragma mark - ReaderViewControllerDelegate

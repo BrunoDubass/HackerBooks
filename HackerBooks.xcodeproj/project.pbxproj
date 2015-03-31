@@ -37,8 +37,6 @@
 		14A721441AC83B410095C722 /* UIXToolbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A7213A1AC83B410095C722 /* UIXToolbarView.m */; };
 		14B6224E1AC4328300BEB548 /* BDBBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B6224C1AC4328300BEB548 /* BDBBookViewController.m */; };
 		14B6224F1AC4328300BEB548 /* BDBBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B6224D1AC4328300BEB548 /* BDBBookViewController.xib */; };
-		14B622561AC56CE700BEB548 /* BDBSimplePDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B622541AC56CE700BEB548 /* BDBSimplePDFViewController.m */; };
-		14B622571AC56CE700BEB548 /* BDBSimplePDFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B622551AC56CE700BEB548 /* BDBSimplePDFViewController.xib */; };
 		14C9109D1AC9423500FE6332 /* ReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C9109B1AC9423500FE6332 /* ReaderViewController.m */; };
 		14C9109E1AC9423500FE6332 /* ReaderDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C9109C1AC9423500FE6332 /* ReaderDocument.m */; };
 		14D648781AC84B5D00DCDA25 /* Reader-Button-H.png in Resources */ = {isa = PBXBuildFile; fileRef = 14D648681AC84B5D00DCDA25 /* Reader-Button-H.png */; };
@@ -128,9 +126,6 @@
 		14B6224B1AC4328300BEB548 /* BDBBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBBookViewController.h; sourceTree = "<group>"; };
 		14B6224C1AC4328300BEB548 /* BDBBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBBookViewController.m; sourceTree = "<group>"; };
 		14B6224D1AC4328300BEB548 /* BDBBookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BDBBookViewController.xib; sourceTree = "<group>"; };
-		14B622531AC56CE700BEB548 /* BDBSimplePDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBSimplePDFViewController.h; sourceTree = "<group>"; };
-		14B622541AC56CE700BEB548 /* BDBSimplePDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBSimplePDFViewController.m; sourceTree = "<group>"; };
-		14B622551AC56CE700BEB548 /* BDBSimplePDFViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BDBSimplePDFViewController.xib; sourceTree = "<group>"; };
 		14C910991AC9423500FE6332 /* ReaderDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderDocument.h; sourceTree = "<group>"; };
 		14C9109A1AC9423500FE6332 /* ReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderViewController.h; sourceTree = "<group>"; };
 		14C9109B1AC9423500FE6332 /* ReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderViewController.m; sourceTree = "<group>"; };
@@ -182,9 +177,6 @@
 				14B6224B1AC4328300BEB548 /* BDBBookViewController.h */,
 				14B6224C1AC4328300BEB548 /* BDBBookViewController.m */,
 				14B6224D1AC4328300BEB548 /* BDBBookViewController.xib */,
-				14B622531AC56CE700BEB548 /* BDBSimplePDFViewController.h */,
-				14B622541AC56CE700BEB548 /* BDBSimplePDFViewController.m */,
-				14B622551AC56CE700BEB548 /* BDBSimplePDFViewController.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -444,7 +436,6 @@
 				14D6487A1AC84B5D00DCDA25 /* Reader-Button-N.png in Resources */,
 				14D6487C1AC84B5D00DCDA25 /* Reader-Email.png in Resources */,
 				14525CA31AC32E0400A365C1 /* BDBLibraryTableViewCell.xib in Resources */,
-				14B622571AC56CE700BEB548 /* BDBSimplePDFViewController.xib in Resources */,
 				14D648831AC84B5D00DCDA25 /* Reader-Mark-Y@2x.png in Resources */,
 				14D6487D1AC84B5D00DCDA25 /* Reader-Email@2x.png in Resources */,
 			);
@@ -479,7 +470,6 @@
 				1492F37F1AC1E7EE00833949 /* AppDelegate.m in Sources */,
 				14A7213D1AC83B410095C722 /* ReaderThumbRequest.m in Sources */,
 				14A7213B1AC83B410095C722 /* CGPDFDocument.m in Sources */,
-				14B622561AC56CE700BEB548 /* BDBSimplePDFViewController.m in Sources */,
 				14525CA21AC32E0400A365C1 /* BDBLibraryTableViewCell.m in Sources */,
 				14B6224E1AC4328300BEB548 /* BDBBookViewController.m in Sources */,
 				14C9109D1AC9423500FE6332 /* ReaderViewController.m in Sources */,

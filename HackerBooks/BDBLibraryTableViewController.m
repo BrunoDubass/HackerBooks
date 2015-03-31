@@ -19,17 +19,17 @@
 @property (strong, nonatomic)BDBBook *bookP;
 @property (strong, nonatomic)NSIndexPath *indexP;
 
-
-
 @end
 
 @implementation BDBLibraryTableViewController
 
-
+#pragma mark - LifeCycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //Registrar NIB
+    
+    //Registrar NIB celda personalizada
+    
     UINib *cellNib = [UINib nibWithNibName:@"BDBLibraryTableViewCell" bundle:nil];
     [self.tableView registerNib:cellNib
          forCellReuseIdentifier:[BDBLibraryTableViewCell cellId]];
@@ -37,11 +37,16 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    //Recargamos datos de la tabla
+    
     [self.tableView reloadData];
+    
+    //Seleccionamos último libro elegido
+    
     NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
     NSIndexPath *iP = [NSIndexPath indexPathForRow:[[[d objectForKey:@"keyBook"] objectForKey:@"row"]integerValue] inSection:[[[d objectForKey:@"keyBook"]objectForKey:@"section"]integerValue]];
     
-    //[self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:iP];
     [self.tableView selectRowAtIndexPath:iP animated:YES scrollPosition:UITableViewScrollPositionTop];
     
     
@@ -79,11 +84,14 @@
     
     
     // En qué libro estamos
+    
     BDBBook *b = [self.model bookForTag:[self.model.tags objectAtIndex:indexPath.section] atIndex:indexPath.row];
     
+    //Reutilizamos celda personalizada
     
     BDBLibraryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[BDBLibraryTableViewCell cellId] forIndexPath:indexPath];
 
+    //Config de imagen estrella para favoritos
     
     if (indexPath.section == 0) {
           cell.starImage.image = [UIImage imageNamed:@"StarAlpha"];
@@ -101,8 +109,7 @@
 
     }
         
-
-    
+    //Sync Modelo y Vista
     
     cell.bookImageLabel.image = b.bookImg;
     cell.titleLabel.text = b.title;
@@ -113,17 +120,23 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    //User defaults para última fila seleccionada
+    
     NSNumber *section = [NSNumber numberWithInteger:indexPath.section];
     NSNumber *row = [NSNumber numberWithInteger:indexPath.row];
     
     [[NSUserDefaults standardUserDefaults]setObject:@{@"section":section , @"row":row} forKey:@"keyBook"];
     
+    //Envío al delegado del tableView
+    
     BDBBook *bk = [self.model bookForTag:[self.model.tags objectAtIndex:indexPath.section] atIndex:indexPath.row];
     [self.delegate libraryTableviewSelectedBook:bk arrayOfBooks:self.model.books];
     
+    //Envío de notificación
+    
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    NSDictionary *dic = @{@"book":bk};
-    NSNotification *n = [[NSNotification alloc]initWithName:@"book" object:self userInfo:dic];
+    NSDictionary *dic = @{KEY:bk};
+    NSNotification *n = [[NSNotification alloc]initWithName:NOTIFICATION_DID_SELECT_ROW object:self userInfo:dic];
     [nc postNotification:n];
     
     
@@ -138,54 +151,6 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [BDBLibraryTableViewCell cellHigh];
 }
-
--(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
-    return YES;
-}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark - BDBLibraryTableViewControllerDelegate
 

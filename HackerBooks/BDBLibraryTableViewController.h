@@ -10,6 +10,9 @@
 @class BDBLibrary;
 @class BDBBook;
 
+#define NOTIFICATION_DID_SELECT_ROW @"book"
+#define KEY @"book"
+
 
 @protocol BDBLibraryTableViewControllerDelegate <NSObject>
 

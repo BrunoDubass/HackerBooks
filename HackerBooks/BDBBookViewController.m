@@ -8,7 +8,6 @@
 
 #import "BDBBookViewController.h"
 #import "BDBBook.h"
-#import "BDBSimplePDFViewController.h"
 #import "ReaderDocument.h"
 #import "ReaderViewController.h"
 
@@ -21,11 +20,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    //Actualizamos User Defaults con los Favoritos
     
     NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
     NSMutableArray *favs = [[NSMutableArray alloc]init];
@@ -36,13 +37,23 @@
     }
     [d setObject:favs forKey:@"defaults"];
     
+    //Actualizamos título para favorito
+    
     if (self.book.isFavorite == YES) {
         self.title = [self.book.title stringByAppendingString:@" (Favorite)"];
     }else{
     self.title = self.book.title;
     }
+    
+    //Mostramos barra de navigation puesto que si viene de visor PDF está oculta
+    
     [self.navigationController.navigationBar setHidden:NO];
+    
+    //Configuramos botón PDF
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"PDF" style:UIBarButtonItemStylePlain target:self action:@selector(pdfView:)];
+    
+    //Sincro Modelo Vista
     
     [self syncViewModel];
 }
@@ -78,10 +89,12 @@
 */
 
 -(void)syncViewModel{
+    
     self.titleLabel.text = self.book.title;
     self.authorsLabel.text = [[self.book.authors componentsJoinedByString:@", "]capitalizedString];
     self.tagsLabel.text = [[self.book.tags componentsJoinedByString:@", "]capitalizedString];
     self.bookImg.image = self.book.bookImg;
+    
     if (self.book.isFavorite) {
         [self.buttonFav setBackgroundImage:[UIImage imageNamed:@"Star1"] forState:UIControlStateNormal];
     }else{
@@ -90,8 +103,11 @@
     
 }
 
+//Botón Favorito
+
 -(IBAction)favorite:(id)sender{
     
+    //Si no es favorito, lo hacemos favorito y al revés, y lo añadimos o eliminamos del array de tags
     
     if (self.book.isFavorite == NO) {
         NSMutableArray *mutableTags = [[NSMutableArray alloc]initWithArray:self.book.tags];
@@ -113,22 +129,29 @@
              self.book.tags = mutableTags;
             [self.buttonFav setBackgroundImage:[UIImage imageNamed:@"Star2"] forState:UIControlStateNormal];
          }
-    //[self.delegate bookViewDidChangeFavoriteState:self.book];
+    
+    //Actualizamos vista
+    
     [self viewWillAppear:YES];
 }
+
+//Botón PDF
 
 -(void)pdfView:(BDBBook*)book{
     
     NSString *filePath = [self.book.bookPDFURL path];
+    
+    //Uso de Framework vfrReader. Push a ReaderViewController.
     
     ReaderDocument *readerDoc = [[ReaderDocument alloc]initWithFilePath:filePath password:nil];
     ReaderViewController *readerVC = [[ReaderViewController alloc]initWithReaderDocument:readerDoc];
     [self.navigationController.navigationBar setHidden:YES];
     [self.navigationController pushViewController:readerVC animated:YES];
     
-//    BDBSimplePDFViewController *pdfVC = [[BDBSimplePDFViewController alloc]initWithModel:self.book];
-//    [self.navigationController pushViewController:pdfVC animated:YES];
+
 }
+
+
 #pragma mark - UISplitViewControllerDelegate
 
 -(void)splitViewController:(UISplitViewController *)svc willChangeToDisplayMode:(UISplitViewControllerDisplayMode)displayMode{
