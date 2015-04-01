@@ -129,6 +129,9 @@
              self.book.tags = mutableTags;
             [self.buttonFav setBackgroundImage:[UIImage imageNamed:@"Star2"] forState:UIControlStateNormal];
          }
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    NSNotification *n = [[NSNotification alloc]initWithName:NOTIFICATION_DID_CHANGE_ISFAVORITE object:self userInfo:nil];
+    [nc postNotification:n];
     
     //Actualizamos vista
     

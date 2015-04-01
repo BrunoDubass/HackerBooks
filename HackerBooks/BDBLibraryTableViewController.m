@@ -38,6 +38,11 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    //Alta en notificación
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateTableViewTags:) name:NOTIFICATION_DID_CHANGE_ISFAVORITE object:nil];
+    
+    
     //Recargamos datos de la tabla
     
     [self.tableView reloadData];
@@ -47,9 +52,15 @@
     NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
     NSIndexPath *iP = [NSIndexPath indexPathForRow:[[[d objectForKey:@"keyBook"] objectForKey:@"row"]integerValue] inSection:[[[d objectForKey:@"keyBook"]objectForKey:@"section"]integerValue]];
     
-    [self.tableView selectRowAtIndexPath:iP animated:YES scrollPosition:UITableViewScrollPositionTop];
+    [self.tableView selectRowAtIndexPath:iP animated:YES scrollPosition:UITableViewScrollPositionNone];
     
     
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -159,6 +170,15 @@
         BDBBookViewController *bVC = [[BDBBookViewController alloc]initWithModel:book books:books];
     
         [self.navigationController pushViewController:bVC animated:YES];
+}
+
+#pragma mark - Notifications
+
+//NOTIFICATION_DID_CHANGE_ISFAVORITE
+
+-(void)updateTableViewTags:(NSNotification*)notification{
+    
+    [self.tableView reloadData];
 }
 
 @end

@@ -10,7 +10,7 @@
 @class BDBBook;
 #import "BDBLibraryTableViewController.h"
 
-
+#define NOTIFICATION_DID_CHANGE_ISFAVORITE @"isFavorite"
 
 @interface BDBBookViewController : UIViewController<BDBLibraryTableViewControllerDelegate ,UISplitViewControllerDelegate>
 
