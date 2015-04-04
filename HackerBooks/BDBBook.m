@@ -17,7 +17,8 @@
               tags:(NSArray*)aTags
            bookImg:(UIImage*)aBookImg
         bookPDFURL:(NSURL*)bookPDFURL
-           bookPDF:(NSData*)aBookPDF{
+           bookPDF:(NSData*)aBookPDF
+        bookImgURL:(NSURL*)aBookImgURL{
     
     if (self = [super init]) {
         _title = aTitle;
@@ -26,6 +27,7 @@
         _bookImg = aBookImg;
         _bookPDFURL = bookPDFURL;
         _bookPDF = aBookPDF;
+        _bookImgURL = aBookImgURL;
     }
     return self;
 }

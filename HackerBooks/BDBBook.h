@@ -18,8 +18,10 @@
 @property (strong, nonatomic)NSArray *tags;
 @property (strong, nonatomic)UIImage *bookImg;
 @property (strong, nonatomic)NSData *bookPDF;
+@property (strong, nonatomic)NSURL *bookImgURL;
 @property (strong, nonatomic)NSURL *bookPDFURL;
 @property (nonatomic)BOOL isFavorite;
+@property (nonatomic)BOOL isDefault;
 
 #pragma mark - INITS
 
@@ -29,5 +31,6 @@
               tags:(NSArray*)aTags
            bookImg:(UIImage*)aBookImg
         bookPDFURL:(NSURL*)bookPDFURL
-           bookPDF:(NSData*)aBookPDF;
+           bookPDF:(NSData*)aBookPDF
+        bookImgURL:(NSURL*)aBookImgURL;
 @end

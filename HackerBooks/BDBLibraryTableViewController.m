@@ -13,7 +13,13 @@
 #import "BDBBookViewController.h"
 
 
-@interface BDBLibraryTableViewController ()
+@interface BDBLibraryTableViewController (){
+    
+    NSURL *documentsURL;
+    NSUserDefaults *d;
+     __block NSURL *imgDocumentsURL;
+}
+
 
 @property (strong, nonatomic)NSMutableArray *booksJSON;
 @property (strong, nonatomic)BDBBook *bookP;
@@ -27,12 +33,51 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self registerNib];
     
-    //Registrar NIB celda personalizada
+    d = [NSUserDefaults standardUserDefaults];
     
-    UINib *cellNib = [UINib nibWithNibName:@"BDBLibraryTableViewCell" bundle:nil];
-    [self.tableView registerNib:cellNib
-         forCellReuseIdentifier:[BDBLibraryTableViewCell cellId]];
+    //Primera carga. Descargo imágenes y PDFs en Documents
+    NSFileManager *fm = [NSFileManager defaultManager];
+    documentsURL = [[fm URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask]lastObject];
+    
+    
+                            if (![[self.model.books objectAtIndex:0]isDefault]) {
+                                
+                                dispatch_queue_t images;
+                                images = dispatch_queue_create("img", 0);
+                                dispatch_async(images, ^{
+                                    
+                                    for (BDBBook* bk in self.model.books){
+                                    
+                                    //Descarga de la imagen del libro nombrando el fichero con el título del libro
+                                    NSURL *imgURL = bk.bookImgURL;
+                                    NSData *dt = [NSData dataWithContentsOfURL:imgURL];
+                                    imgDocumentsURL = [documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@", bk.title]];
+                                    [dt writeToURL:imgDocumentsURL  atomically:YES];
+                                        bk.bookImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:imgDocumentsURL]];
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        
+                                        
+                                        
+                                        [self.tableView reloadData];
+                                    });
+                                    
+                                    }
+                                });
+
+
+                            }else{
+                                for (BDBBook* bk in self.model.books){
+                                    imgDocumentsURL = [documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@", bk.title]];
+                                    bk.bookImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:imgDocumentsURL]];
+
+                                }
+                            }
+
+    
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -161,6 +206,24 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [BDBLibraryTableViewCell cellHigh];
+}
+
+-(void)setDefaults{
+    
+    NSArray *indexes = [[NSArray alloc]init];
+    d = [NSUserDefaults standardUserDefaults];
+    [d setObject:indexes forKey:@"defaults"];
+    [d setObject:@{@"section":@1, @"row":@0} forKey:@"keyBook"];
+}
+
+
+-(void)registerNib{
+    
+    //Registrar NIB celda personalizada
+    
+    UINib *cellNib = [UINib nibWithNibName:@"BDBLibraryTableViewCell" bundle:nil];
+    [self.tableView registerNib:cellNib
+         forCellReuseIdentifier:[BDBLibraryTableViewCell cellId]];
 }
 
 #pragma mark - BDBLibraryTableViewControllerDelegate

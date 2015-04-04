@@ -118,34 +118,27 @@
     //Recorro array del JSON
     for (NSDictionary* dic in dataToJSON) {
         
-                        //Primera carga. Descargo imágenes y PDFs en Documents
-        
-                        if (![d objectForKey:@"defaults"]) {
-                        
-                        //Descarga de la imagen del libro nombrando el fichero con el título del libro
-                        NSURL *imgURL = [NSURL URLWithString:[dic objectForKey:@"image_url"]];
-                        NSData *dt = [NSData dataWithContentsOfURL:imgURL];
-                        NSURL *imgDocumentsURL = [documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@", [dic objectForKey:@"title"]]];
-                        [dt writeToURL:imgDocumentsURL  atomically:YES];
-                        
-                        
-                        //Descarga del PDF nombrando el fichero con el título del libro
-                        NSURL *pdfURL = [NSURL URLWithString:[dic objectForKey:@"pdf_url"]];
-                        NSData *dtPDF = [NSData dataWithContentsOfURL:pdfURL];
-                        NSURL *pdfDocumentsURL = [documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.pdf", [dic objectForKey:@"title"]]];
-                        [dtPDF writeToURL:pdfDocumentsURL atomically:YES];
-                        }
-        
-        
+                               
         //Parseo a BDBBook con datos de Documents
                
         BDBBook *book = [[BDBBook alloc]initWithTitle:[dic objectForKey:@"title"]
                                               authors:[[dic objectForKey:@"authors"]componentsSeparatedByString:@","]
                                                  tags:[[dic objectForKey:@"tags"]componentsSeparatedByString:@","]
-                                              bookImg:[UIImage imageWithData: [NSData dataWithContentsOfURL:[documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@", [dic objectForKey:@"title"]]]]]
-                                           bookPDFURL:[documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.pdf", [dic objectForKey:@"title"]]]
-                                              bookPDF:[NSData dataWithContentsOfURL:[documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.pdf", [dic objectForKey:@"title"]]]]];
+                                              bookImg:nil
+                                           bookPDFURL:[NSURL URLWithString:[dic objectForKey:@"pdf_url"]]
+                                              bookPDF:nil
+                                           bookImgURL:[NSURL URLWithString:[dic objectForKey:@"image_url"]]];
         
+        if (![d objectForKey:@"defaults"]) {
+            book.isDefault = NO;
+        }else{
+            book.isDefault = YES;
+        }
+
+        
+        //[NSData dataWithContentsOfURL:[documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.pdf", [dic objectForKey:@"title"]]]]
+        //[documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.pdf", [dic objectForKey:@"title"]]]
+        //[UIImage imageWithData: [NSData dataWithContentsOfURL:[documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@", [dic objectForKey:@"title"]]]]]
         
         //Cargo favoritos de User Defaults
         

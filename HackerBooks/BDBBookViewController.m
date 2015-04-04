@@ -14,6 +14,9 @@
 
 @interface BDBBookViewController ()
 
+@property (strong, nonatomic)ReaderDocument *readerDoc;
+@property (strong, nonatomic)ReaderViewController *readerVC;
+
 @end
 
 @implementation BDBBookViewController
@@ -51,7 +54,7 @@
     
     //Configuramos botón PDF
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"PDF" style:UIBarButtonItemStylePlain target:self action:@selector(pdfView:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"PDF" style:UIBarButtonItemStylePlain target:self action:@selector(pdfView)];
     
     //Sincro Modelo Vista
     
@@ -140,9 +143,15 @@
 
 //Botón PDF
 
--(void)pdfView:(BDBBook*)book{
+-(void)pdfView{
     
-    NSString *filePath = [self.book.bookPDFURL path];
+    //                            //Descarga del PDF nombrando el fichero con el título del libro
+    //                            NSURL *pdfURL = [NSURL URLWithString:[dic objectForKey:@"pdf_url"]];
+    //                            NSData *dtPDF = [NSData dataWithContentsOfURL:pdfURL];
+    //                            NSURL *pdfDocumentsURL = [documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.pdf", [dic objectForKey:@"title"]]];
+    //                            [dtPDF writeToURL:pdfDocumentsURL atomically:YES];
+    
+    NSString *filePath = [self.book.bookPDFURL absoluteString];
     
     //Uso de Framework vfrReader. Push a ReaderViewController.
     

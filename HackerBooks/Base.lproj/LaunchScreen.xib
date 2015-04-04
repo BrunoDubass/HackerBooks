@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6214" systemVersion="14A314h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -23,6 +23,35 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please, wait..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whm-MG-4di">
+                    <rect key="frame" x="187" y="248" width="107" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="ufn-ma-cz9"/>
+                        <constraint firstAttribute="width" constant="107" id="wR2-Q0-R8W"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading photos and PDFs..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d81-eZ-N3w">
+                    <rect key="frame" x="133" y="289" width="215" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="3aO-J8-1OO"/>
+                        <constraint firstAttribute="width" constant="215" id="6rj-qm-ub1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This process can take several minutes..." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5e-zg-U56">
+                    <rect key="frame" x="87" y="335" width="307" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="aKM-Ik-s8y"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -30,8 +59,15 @@
                 <constraint firstAttribute="centerX" secondItem="kId-c2-rCX" secondAttribute="centerX" id="Koa-jz-hwk"/>
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="Kzo-t9-V3l"/>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="MfP-vx-nX0"/>
+                <constraint firstItem="d81-eZ-N3w" firstAttribute="centerX" secondItem="whm-MG-4di" secondAttribute="centerX" id="NcG-st-ge3"/>
+                <constraint firstItem="d81-eZ-N3w" firstAttribute="top" secondItem="whm-MG-4di" secondAttribute="bottom" constant="20" id="Sci-vv-8cR"/>
                 <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="ZEH-qu-HZ9"/>
+                <constraint firstItem="d81-eZ-N3w" firstAttribute="centerX" secondItem="H5e-zg-U56" secondAttribute="centerX" id="aiv-6D-Rig"/>
+                <constraint firstItem="H5e-zg-U56" firstAttribute="top" secondItem="d81-eZ-N3w" secondAttribute="bottom" constant="25" id="dpO-Rc-cPB"/>
                 <constraint firstItem="kId-c2-rCX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="fvb-Df-36g"/>
+                <constraint firstItem="H5e-zg-U56" firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="gkx-eH-ROG"/>
+                <constraint firstItem="whm-MG-4di" firstAttribute="top" secondItem="kId-c2-rCX" secondAttribute="bottom" constant="65" id="kMw-Bw-YTH"/>
+                <constraint firstItem="8ie-xW-0ye" firstAttribute="top" secondItem="H5e-zg-U56" secondAttribute="bottom" constant="83" id="txP-rp-fW0"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
