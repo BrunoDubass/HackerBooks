@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HackerBooks/BDBBookViewController.m"
-            timestampString = "449925911.181606"
+            timestampString = "449939103.713346"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
             landmarkName = "-libraryTableviewSelectedBook:arrayOfBooks:"
             landmarkType = "5">
          </BreakpointContent>
@@ -36,7 +36,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HackerBooks/BDBLibraryTableViewController.m"
-            timestampString = "449927039.235461"
+            timestampString = "449939989.265232"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "184"

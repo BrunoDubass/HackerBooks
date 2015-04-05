@@ -35,16 +35,6 @@
     
     [self.activity setHidden:YES];
     
-    //Actualizamos User Defaults con los Favoritos
-    
-    NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *favs = [[NSMutableArray alloc]init];
-    for (BDBBook* b in self.books) {
-        if (b.isFavorite == YES) {
-            [favs addObject:b.title];
-        }
-    }
-    [d setObject:favs forKey:@"defaults"];
     
     //Actualizamos título para favorito
     
@@ -70,7 +60,7 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     
-        
+    
 
 }
 
@@ -138,6 +128,18 @@
              self.book.tags = mutableTags;
             [self.buttonFav setBackgroundImage:[UIImage imageNamed:@"Star2"] forState:UIControlStateNormal];
          }
+    
+    //Actualizamos User Defaults con los Favoritos
+    
+    NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *favs = [[NSMutableArray alloc]init];
+    for (BDBBook* b in self.books) {
+        if (b.isFavorite == YES) {
+            [favs addObject:b.title];
+        }
+    }
+    [d setObject:favs forKey:@"defaults"];
+    
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     NSNotification *n = [[NSNotification alloc]initWithName:NOTIFICATION_DID_CHANGE_ISFAVORITE object:self userInfo:nil];
     [nc postNotification:n];

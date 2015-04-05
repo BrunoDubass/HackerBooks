@@ -247,9 +247,10 @@
 -(void)updateTableViewTags:(NSNotification*)notification{
     
     [self.tableView reloadData];
+    
     //Seleccionamos último libro elegido
     
-    NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
+    d = [NSUserDefaults standardUserDefaults];
     NSIndexPath *iP = [NSIndexPath indexPathForRow:[[[d objectForKey:@"keyBook"] objectForKey:@"row"]integerValue] inSection:[[[d objectForKey:@"keyBook"]objectForKey:@"section"]integerValue]];
     
     [self.tableView selectRowAtIndexPath:iP animated:YES scrollPosition:UITableViewScrollPositionNone];
