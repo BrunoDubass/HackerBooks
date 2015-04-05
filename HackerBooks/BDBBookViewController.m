@@ -145,17 +145,24 @@
 
 -(void)pdfView{
     
-    //                            //Descarga del PDF nombrando el fichero con el título del libro
-    //                            NSURL *pdfURL = [NSURL URLWithString:[dic objectForKey:@"pdf_url"]];
-    //                            NSData *dtPDF = [NSData dataWithContentsOfURL:pdfURL];
-    //                            NSURL *pdfDocumentsURL = [documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.pdf", [dic objectForKey:@"title"]]];
-    //                            [dtPDF writeToURL:pdfDocumentsURL atomically:YES];
     
-    NSString *filePath = [self.book.bookPDFURL absoluteString];
+                                NSFileManager *fm = [NSFileManager defaultManager];
+    
+    
+                                NSURL *documentsURL = [[fm URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask]lastObject];
+    
+                                //Descarga del PDF nombrando el fichero con el título del libro
+                                NSURL *pdfURL = self.book.bookPDFURL;
+                                NSData *dtPDF = [NSData dataWithContentsOfURL:pdfURL];
+                                NSURL *pdfDocumentsURL = [documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.pdf", self.book.title]];
+                                [dtPDF writeToURL:pdfDocumentsURL atomically:YES];
+    
+    
+    //NSString *filePath = [[NSBundle mainBundle]pathForResource:[pdfDocumentsURL path] ofType:nil];
     
     //Uso de Framework vfrReader. Push a ReaderViewController.
     
-    ReaderDocument *readerDoc = [[ReaderDocument alloc]initWithFilePath:filePath password:nil];
+    ReaderDocument *readerDoc = [ReaderDocument withDocumentFilePath:[pdfDocumentsURL path] password:nil];
     ReaderViewController *readerVC = [[ReaderViewController alloc]initWithReaderDocument:readerDoc];
     [self.navigationController.navigationBar setHidden:YES];
     [self.navigationController pushViewController:readerVC animated:YES];

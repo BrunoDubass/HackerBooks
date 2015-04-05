@@ -922,14 +922,34 @@
 
 -(void)updateDocument:(NSNotification*)n{
     
+    
+        NSError *error = nil;
+    
+        NSFileManager *fm = [NSFileManager defaultManager];
+        [fm removeItemAtURL:document.fileURL error:&error];
+
+    
     //Extracción del userInfo Diccionario
     
     NSDictionary *dic = [n userInfo];
     BDBBook *b = [dic objectForKey:KEY];
-    ReaderDocument *r = [[ReaderDocument alloc]initWithFilePath:[b.bookPDFURL path] password:nil];
+    
+    
+    NSURL *documentsURL = [[fm URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask]lastObject];
+    
+    //Descarga del PDF nombrando el fichero con el título del libro
+    NSURL *pdfURL = b.bookPDFURL;
+    NSData *dtPDF = [NSData dataWithContentsOfURL:pdfURL];
+    NSURL *pdfDocumentsURL = [documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.pdf", b.bookPDFURL]];
+    [dtPDF writeToURL:pdfDocumentsURL atomically:YES];
+    
+    
+    
+    ReaderDocument *r = [[ReaderDocument alloc]initWithFilePath:[pdfDocumentsURL path] password:nil];
     ReaderViewController *rVC = [[ReaderViewController alloc]initWithReaderDocument:r];
     
     //Ñapa para actualizar Modelo y Vista. popViewController al controlador actual y pushViewController a ReaderViewController
+    
     
     UINavigationController *navController = self.navigationController;
     [navController popViewControllerAnimated:NO];
@@ -940,6 +960,12 @@
 #pragma mark - ReaderViewControllerDelegate
 
 -(void)dismissReaderViewController:(ReaderViewController *)viewController{
+    
+    NSError *error = nil;
+    
+    NSFileManager *fm = [NSFileManager defaultManager];
+    [fm removeItemAtURL:document.fileURL error:&error];
+
     [self.navigationController popViewControllerAnimated:NO];
 }
 
