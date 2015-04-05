@@ -57,10 +57,16 @@
                                     [dt writeToURL:imgDocumentsURL  atomically:YES];
                                         bk.bookImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:imgDocumentsURL]];
                                     dispatch_async(dispatch_get_main_queue(), ^{
-                                        
-                                        
-                                        
+  
                                         [self.tableView reloadData];
+                                        
+                                        //Seleccionamos último libro elegido
+                                        
+                                        d = [NSUserDefaults standardUserDefaults];
+                                        NSIndexPath *iP = [NSIndexPath indexPathForRow:[[[d objectForKey:@"keyBook"] objectForKey:@"row"]integerValue] inSection:[[[d objectForKey:@"keyBook"]objectForKey:@"section"]integerValue]];
+                                        
+                                        [self.tableView selectRowAtIndexPath:iP animated:YES scrollPosition:UITableViewScrollPositionNone];
+                                        
                                     });
                                     
                                     }
@@ -75,8 +81,6 @@
                                 }
                             }
 
-    
-    
     
 }
 
@@ -101,6 +105,7 @@
     
     
 }
+
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];

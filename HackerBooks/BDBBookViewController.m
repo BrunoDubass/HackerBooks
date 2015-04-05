@@ -186,18 +186,6 @@
 
 }
 
--(void)removeViews{
-    
-    [self.tagsLabel removeFromSuperview];
-    [self.titleLabel removeFromSuperview];
-    [self.bookImg removeFromSuperview];
-    [self.authorsLabel removeFromSuperview];
-    [self.buttonFav removeFromSuperview];
-    [self.titleStatic removeFromSuperview];
-    [self.tagsStatic removeFromSuperview];
-}
-
-
 #pragma mark - UISplitViewControllerDelegate
 
 -(void)splitViewController:(UISplitViewController *)svc willChangeToDisplayMode:(UISplitViewControllerDisplayMode)displayMode{
