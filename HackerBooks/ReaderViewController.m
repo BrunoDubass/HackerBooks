@@ -940,7 +940,7 @@
     //Descarga del PDF nombrando el fichero con el título del libro
     NSURL *pdfURL = b.bookPDFURL;
     NSData *dtPDF = [NSData dataWithContentsOfURL:pdfURL];
-    NSURL *pdfDocumentsURL = [documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.pdf", b.bookPDFURL]];
+    NSURL *pdfDocumentsURL = [documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.pdf", b.title]];
     [dtPDF writeToURL:pdfDocumentsURL atomically:YES];
     
     
