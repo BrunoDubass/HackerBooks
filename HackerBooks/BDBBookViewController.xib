@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -8,11 +8,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BDBBookViewController">
             <connections>
+                <outlet property="activity" destination="SpO-Zr-jmC" id="QtW-eX-Nrh"/>
                 <outlet property="authorsLabel" destination="fcz-ha-KPe" id="XCy-Mc-aDl"/>
                 <outlet property="bookImg" destination="qlp-LD-4no" id="ewQ-Wb-2IZ"/>
                 <outlet property="buttonFav" destination="TDq-0v-xSg" id="tIC-IL-Ocv"/>
                 <outlet property="tagsLabel" destination="bZu-yf-VzP" id="Eya-Qj-Qp8"/>
+                <outlet property="tagsStatic" destination="3mZ-eD-ws2" id="Wcj-Hh-fKK"/>
                 <outlet property="titleLabel" destination="5cT-Wj-aEv" id="9W6-iq-4fL"/>
+                <outlet property="titleStatic" destination="gfS-F6-kxp" id="jKg-Eo-KcU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -186,9 +189,14 @@
                         </mask>
                     </variation>
                 </imageView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="SpO-Zr-jmC">
+                    <rect key="frame" x="282" y="218" width="37" height="37"/>
+                    <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="SpO-Zr-jmC" firstAttribute="centerX" secondItem="qlp-LD-4no" secondAttribute="centerX" id="0Hk-Dk-BAU"/>
                 <constraint firstItem="bZu-yf-VzP" firstAttribute="top" secondItem="3mZ-eD-ws2" secondAttribute="bottom" constant="1" id="0vv-57-lnt"/>
                 <constraint firstItem="5cT-Wj-aEv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="133-4d-Cq6"/>
                 <constraint firstItem="bZu-yf-VzP" firstAttribute="trailing" secondItem="5cT-Wj-aEv" secondAttribute="trailing" id="28j-gX-3fg"/>
@@ -205,6 +213,7 @@
                 <constraint firstItem="3mZ-eD-ws2" firstAttribute="top" secondItem="5cT-Wj-aEv" secondAttribute="bottom" constant="1" id="J0m-FN-JLt"/>
                 <constraint firstItem="fcz-ha-KPe" firstAttribute="top" secondItem="bZu-yf-VzP" secondAttribute="bottom" constant="8" symbolic="YES" id="NIZ-wP-hyi"/>
                 <constraint firstItem="bZu-yf-VzP" firstAttribute="trailing" secondItem="fcz-ha-KPe" secondAttribute="trailing" id="QJb-7D-7xa"/>
+                <constraint firstItem="SpO-Zr-jmC" firstAttribute="centerY" secondItem="bZu-yf-VzP" secondAttribute="centerY" id="XWS-Bv-E5G"/>
                 <constraint firstItem="5cT-Wj-aEv" firstAttribute="leading" secondItem="3mZ-eD-ws2" secondAttribute="leading" id="YGY-0Q-IEh"/>
                 <constraint firstItem="fcz-ha-KPe" firstAttribute="top" secondItem="bZu-yf-VzP" secondAttribute="bottom" constant="8" symbolic="YES" id="Yb2-mn-RBD"/>
                 <constraint firstItem="TDq-0v-xSg" firstAttribute="top" secondItem="qlp-LD-4no" secondAttribute="bottom" constant="41" id="Z6d-oC-D7B"/>

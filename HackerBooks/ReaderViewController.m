@@ -922,6 +922,13 @@
 
 -(void)updateDocument:(NSNotification*)n{
     
+//    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+//    [activity setFrame:CGRectMake(40, 80, 20, 20)];
+//    [self.view addSubview:activity];
+//    
+//    [activity setHidden:NO];
+//    [activity startAnimating];
+    
     
         NSError *error = nil;
     
@@ -934,26 +941,41 @@
     NSDictionary *dic = [n userInfo];
     BDBBook *b = [dic objectForKey:KEY];
     
+//    dispatch_queue_t pdf = dispatch_queue_create("pdf", 0);
+//    dispatch_async(pdf, ^{
     
-    NSURL *documentsURL = [[fm URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask]lastObject];
+        NSURL *documentsURL = [[fm URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask]lastObject];
+        
+        //Descarga del PDF nombrando el fichero con el título del libro
+        NSURL *pdfURL = b.bookPDFURL;
+        NSData *dtPDF = [NSData dataWithContentsOfURL:pdfURL];
+        NSURL *pdfDocumentsURL = [documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.pdf", b.title]];
+        [dtPDF writeToURL:pdfDocumentsURL atomically:YES];
     
-    //Descarga del PDF nombrando el fichero con el título del libro
-    NSURL *pdfURL = b.bookPDFURL;
-    NSData *dtPDF = [NSData dataWithContentsOfURL:pdfURL];
-    NSURL *pdfDocumentsURL = [documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.pdf", b.title]];
-    [dtPDF writeToURL:pdfDocumentsURL atomically:YES];
+        ReaderDocument *r = [[ReaderDocument alloc]initWithFilePath:[pdfDocumentsURL path] password:nil];
+        ReaderViewController *rVC = [[ReaderViewController alloc]initWithReaderDocument:r];
+        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+    
+            
+            
+            //Ñapa para actualizar Modelo y Vista. popViewController al controlador actual y pushViewController a ReaderViewController
+    
+            UINavigationController *navController = self.navigationController;
+            [navController popViewControllerAnimated:NO];
+            [navController pushViewController:rVC animated:NO];
+    
+//        });
+//        
+//        
+//    });
     
     
     
-    ReaderDocument *r = [[ReaderDocument alloc]initWithFilePath:[pdfDocumentsURL path] password:nil];
-    ReaderViewController *rVC = [[ReaderViewController alloc]initWithReaderDocument:r];
-    
-    //Ñapa para actualizar Modelo y Vista. popViewController al controlador actual y pushViewController a ReaderViewController
     
     
-    UINavigationController *navController = self.navigationController;
-    [navController popViewControllerAnimated:NO];
-    [navController pushViewController:rVC animated:NO];
+    
+    
         
 }
 

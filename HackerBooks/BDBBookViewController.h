@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *authorsLabel;
 @property (strong, nonatomic)BDBBook *book;
 @property (strong, nonatomic)NSArray *books;
+@property (weak, nonatomic) IBOutlet UILabel *titleStatic;
+@property (weak, nonatomic) IBOutlet UILabel *tagsStatic;
 
 
 @property (weak, nonatomic) IBOutlet UIButton *buttonFav;
