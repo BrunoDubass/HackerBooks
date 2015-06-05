@@ -10,6 +10,7 @@
 		14525C9D1AC2C35A00A365C1 /* BDBLibraryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14525C9C1AC2C35A00A365C1 /* BDBLibraryTableViewController.m */; };
 		14525CA21AC32E0400A365C1 /* BDBLibraryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14525CA01AC32E0400A365C1 /* BDBLibraryTableViewCell.m */; };
 		14525CA31AC32E0400A365C1 /* BDBLibraryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14525CA11AC32E0400A365C1 /* BDBLibraryTableViewCell.xib */; };
+		14632FEB1B191C45007D453A /* noimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 14632FEA1B191C45007D453A /* noimage.png */; };
 		1492F37C1AC1E7EE00833949 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1492F37B1AC1E7EE00833949 /* main.m */; };
 		1492F37F1AC1E7EE00833949 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1492F37E1AC1E7EE00833949 /* AppDelegate.m */; };
 		1492F3811AC1E7EE00833949 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1492F3801AC1E7EE00833949 /* Images.xcassets */; };
@@ -73,6 +74,7 @@
 		14525C9F1AC32E0400A365C1 /* BDBLibraryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBLibraryTableViewCell.h; sourceTree = "<group>"; };
 		14525CA01AC32E0400A365C1 /* BDBLibraryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBLibraryTableViewCell.m; sourceTree = "<group>"; };
 		14525CA11AC32E0400A365C1 /* BDBLibraryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BDBLibraryTableViewCell.xib; sourceTree = "<group>"; };
+		14632FEA1B191C45007D453A /* noimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noimage.png; sourceTree = "<group>"; };
 		1492F3761AC1E7EE00833949 /* HackerBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackerBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1492F37A1AC1E7EE00833949 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1492F37B1AC1E7EE00833949 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				1492F39A1AC1E83C00833949 /* BDBBook.m */,
 				1492F39D1AC1E85A00833949 /* BDBLibrary.h */,
 				1492F39E1AC1E85A00833949 /* BDBLibrary.m */,
+				14632FEA1B191C45007D453A /* noimage.png */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				14D648861AC84B5D00DCDA25 /* Reader-Thumbs.png in Resources */,
 				14D648871AC84B5D00DCDA25 /* Reader-Thumbs@2x.png in Resources */,
 				14D648781AC84B5D00DCDA25 /* Reader-Button-H.png in Resources */,
+				14632FEB1B191C45007D453A /* noimage.png in Resources */,
 				14D648791AC84B5D00DCDA25 /* Reader-Button-H@2x.png in Resources */,
 				14D6487A1AC84B5D00DCDA25 /* Reader-Button-N.png in Resources */,
 				14D6487C1AC84B5D00DCDA25 /* Reader-Email.png in Resources */,
@@ -598,6 +602,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = HackerBooks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -609,6 +614,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = HackerBooks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

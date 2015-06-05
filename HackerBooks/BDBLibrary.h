@@ -13,11 +13,11 @@
 
 #pragma mark - PROPERTIES
 
-@property (strong, nonatomic)NSArray *books;
+@property (strong, nonatomic)NSMutableArray *books;
 
 #pragma mark - INITS
 
--(id)initWithBooks:(NSArray*)aBooks;
+-(id)initWithBooks:(NSMutableArray*)aBooks;
 
 #pragma mark - METHODS
 

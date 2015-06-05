@@ -7,6 +7,7 @@
 //
 
 #import "BDBBook.h"
+#define NOTIFICATION_DID_CHANGE_ISFAVORITE @"isFavorite"
 
 @implementation BDBBook
 
@@ -42,5 +43,10 @@
     return m;
 }
 
-
+-(void)favoriteHasChange{
+    
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    NSNotification *n = [[NSNotification alloc]initWithName:NOTIFICATION_DID_CHANGE_ISFAVORITE object:self userInfo:nil];
+    [nc postNotification:n];
+}
 @end

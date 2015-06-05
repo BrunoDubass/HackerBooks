@@ -33,4 +33,6 @@
         bookPDFURL:(NSURL*)bookPDFURL
            bookPDF:(NSData*)aBookPDF
         bookImgURL:(NSURL*)aBookImgURL;
+
+-(void)favoriteHasChange;
 @end

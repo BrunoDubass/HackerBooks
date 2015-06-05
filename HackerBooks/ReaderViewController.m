@@ -930,10 +930,10 @@
 //    [activity startAnimating];
     
     
-        NSError *error = nil;
+        //NSError *error = nil;
     
         NSFileManager *fm = [NSFileManager defaultManager];
-        [fm removeItemAtURL:document.fileURL error:&error];
+        //[fm removeItemAtURL:document.fileURL error:&error];
 
     
     //Extracción del userInfo Diccionario
@@ -951,6 +951,8 @@
         NSData *dtPDF = [NSData dataWithContentsOfURL:pdfURL];
         NSURL *pdfDocumentsURL = [documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.pdf", b.title]];
         [dtPDF writeToURL:pdfDocumentsURL atomically:YES];
+        b.bookPDFURL = pdfDocumentsURL;
+        b.bookPDF = [NSData dataWithContentsOfURL:b.bookPDFURL];
     
         ReaderDocument *r = [[ReaderDocument alloc]initWithFilePath:[pdfDocumentsURL path] password:nil];
         ReaderViewController *rVC = [[ReaderViewController alloc]initWithReaderDocument:r];
@@ -983,10 +985,10 @@
 
 -(void)dismissReaderViewController:(ReaderViewController *)viewController{
     
-    NSError *error = nil;
+    //NSError *error = nil;
     
-    NSFileManager *fm = [NSFileManager defaultManager];
-    [fm removeItemAtURL:document.fileURL error:&error];
+    //NSFileManager *fm = [NSFileManager defaultManager];
+    //[fm removeItemAtURL:document.fileURL error:&error];
 
     [self.navigationController popViewControllerAnimated:NO];
 }

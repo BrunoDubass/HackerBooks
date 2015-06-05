@@ -18,7 +18,7 @@
 
 @optional
 
--(void)libraryTableviewSelectedBook:(BDBBook*)book arrayOfBooks:(NSArray*)books;
+-(void)libraryTableviewSelectedBook:(BDBBook*)book arrayOfBooks:(NSMutableArray*)books;
 
 @end
 

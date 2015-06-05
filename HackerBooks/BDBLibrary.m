@@ -13,7 +13,7 @@
 
 #pragma mark - INITS
 
--(id)initWithBooks:(NSArray*)aBooks{
+-(id)initWithBooks:(NSMutableArray*)aBooks{
     
     if (self = [super init]) {
         _books = aBooks;
@@ -40,7 +40,10 @@
         }
     }
     tagsLookUp = [[tagsLookUp sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)]mutableCopy];
-    [tagsLookUp insertObject:@"Favorites" atIndex:0];
+    if ([self booksForTag:@"Favorites"]) {
+        [tagsLookUp insertObject:@"Favorites" atIndex:0];
+    }
+    
     return tagsLookUp;
 }
 
@@ -73,14 +76,22 @@
                 [booksForTag addObject:book];
             }
         }
+    if (booksForTag.count == 0) {
+        
+        return nil;
+        
+    }else{
+        
         return [booksForTag sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             
             NSString *first = [(BDBBook*)obj1 title];
             NSString *second = [(BDBBook*)obj2 title];
             return [first localizedCaseInsensitiveCompare:second];
         }];
+        
 
-
+    }
+    
 }
 
 -(BDBBook*)bookForTag:(NSString*) tag atIndex:(NSUInteger)index{

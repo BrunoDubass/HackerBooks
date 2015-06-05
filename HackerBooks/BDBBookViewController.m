@@ -140,9 +140,7 @@
     }
     [d setObject:favs forKey:@"defaults"];
     
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    NSNotification *n = [[NSNotification alloc]initWithName:NOTIFICATION_DID_CHANGE_ISFAVORITE object:self userInfo:nil];
-    [nc postNotification:n];
+    [self.book favoriteHasChange];
     
     //Actualizamos vista
     
@@ -153,39 +151,54 @@
 
 -(void)pdfView{
     
-    [self.activity setHidden:NO];
-    [self.activity startAnimating];
-    
-    
-    dispatch_queue_t pdf = dispatch_queue_create("pdf", 0);
-    dispatch_async(pdf, ^{
+    if (self.book.bookPDF) {
         
-        
-        
-        NSFileManager *fm = [NSFileManager defaultManager];
-        
-        
-        NSURL *documentsURL = [[fm URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask]lastObject];
-        
-        //Descarga del PDF nombrando el fichero con el título del libro
-        NSURL *pdfURL = self.book.bookPDFURL;
-        NSData *dtPDF = [NSData dataWithContentsOfURL:pdfURL];
-        pdfDocumentsURL = [documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.pdf", self.book.title]];
-        [dtPDF writeToURL:pdfDocumentsURL atomically:YES];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            //Uso de Framework vfrReader. Push a ReaderViewController.
-            
-            ReaderDocument *readerDoc = [ReaderDocument withDocumentFilePath:[pdfDocumentsURL path] password:nil];
-            ReaderViewController *readerVC = [[ReaderViewController alloc]initWithReaderDocument:readerDoc];
-            [self.navigationController.navigationBar setHidden:YES];
-            [self.activity stopAnimating];
-            [self.activity setHidden:YES];
-            [self.navigationController pushViewController:readerVC animated:YES];
-        });
-    });
-   
+        ReaderDocument *readerDoc = [ReaderDocument withDocumentFilePath:[self.book.bookPDFURL path] password:nil];
+        ReaderViewController *readerVC = [[ReaderViewController alloc]initWithReaderDocument:readerDoc];
+        [self.navigationController.navigationBar setHidden:YES];
+        [self.navigationController pushViewController:readerVC animated:YES];
 
+
+    }else{
+        
+        
+        [self.activity setHidden:NO];
+        [self.activity startAnimating];
+        
+        
+        dispatch_queue_t pdf = dispatch_queue_create("pdf", 0);
+        dispatch_async(pdf, ^{
+            
+            
+            
+            NSFileManager *fm = [NSFileManager defaultManager];
+            
+            
+            NSURL *documentsURL = [[fm URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask]lastObject];
+            
+            //Descarga del PDF nombrando el fichero con el título del libro
+            NSURL *pdfURL = self.book.bookPDFURL;
+            NSData *dtPDF = [NSData dataWithContentsOfURL:pdfURL];
+            pdfDocumentsURL = [documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.pdf", self.book.title]];
+            [dtPDF writeToURL:pdfDocumentsURL atomically:YES];
+            self.book.bookPDFURL = pdfDocumentsURL;
+            self.book.bookPDF = [NSData dataWithContentsOfURL:self.book.bookPDFURL];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //Uso de Framework vfrReader. Push a ReaderViewController.
+                
+                ReaderDocument *readerDoc = [ReaderDocument withDocumentFilePath:[pdfDocumentsURL path] password:nil];
+                ReaderViewController *readerVC = [[ReaderViewController alloc]initWithReaderDocument:readerDoc];
+                [self.navigationController.navigationBar setHidden:YES];
+                [self.activity stopAnimating];
+                [self.activity setHidden:YES];
+                [self.navigationController pushViewController:readerVC animated:YES];
+            });
+        });
+        
+
+    }
+    
 }
 
 #pragma mark - UISplitViewControllerDelegate
